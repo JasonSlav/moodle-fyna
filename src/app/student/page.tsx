@@ -34,6 +34,12 @@ export default function StudentPage() {
       <h1 className="text-xl font-semibold text-zinc-900">
         Pilih Bagian Pembelajaran
       </h1>
+      <Link
+        href="/student/section/1"
+        className="rounded-lg bg-zinc-900 px-4 py-3 text-center text-sm font-medium text-white hover:bg-zinc-700"
+      >
+        Mulai dari Bagian 1
+      </Link>
       <div className="flex flex-col gap-4">
         {SECTION_CONFIGS.map((section) => (
           <Link

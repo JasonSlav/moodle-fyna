@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import {
   clearLocalStudentId,
@@ -111,6 +112,26 @@ export default function Home() {
               Identitasmu tersimpan di browser dan akan digunakan untuk seluruh
               bagian pembelajaran.
             </p>
+            <div className="mt-6 flex flex-col gap-3">
+              <Link
+                href="/student"
+                className="rounded-lg bg-zinc-900 px-3 py-2 text-center text-sm font-medium text-white hover:bg-zinc-700"
+              >
+                Mulai
+              </Link>
+              <button
+                type="button"
+                onClick={() => {
+                  clearLocalStudentId();
+                  setName("");
+                  setError(null);
+                  setStatus({ state: "new" });
+                }}
+                className="text-sm text-zinc-500 underline hover:text-zinc-700"
+              >
+                Ganti nama
+              </button>
+            </div>
           </>
         )}
       </div>
