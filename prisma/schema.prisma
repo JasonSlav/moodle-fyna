@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Student {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  answers   Answer[]
+}
+
+model Section {
+  number     Int        @id
+  activities Activity[]
+  answers    Answer[]
+}
+
+model Activity {
+  id            String   @id @default(uuid())
+  sectionNumber Int
+  key           String
+  section       Section  @relation(fields: [sectionNumber], references: [number], onDelete: Cascade)
+  answers       Answer[]
+
+  @@unique([sectionNumber, key])
+}
+
+model Answer {
+  id            String   @id @default(uuid())
+  studentId     String
+  sectionNumber Int
+  activityId    String
+  data          Json
+  createdAt     DateTime @default(now())
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  section       Section  @relation(fields: [sectionNumber], references: [number], onDelete: Cascade)
+  activity      Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+}
