@@ -80,10 +80,14 @@ export function ActivityRenderer({ config, initialAnswer, onSaved }: Props) {
     <div className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-6">
       <h2 className="text-lg font-semibold text-zinc-900">{config.title}</h2>
       {config.prompt && (
-        <p className="text-sm text-zinc-600">{config.prompt}</p>
+        <p className="whitespace-pre-line text-sm text-zinc-600">
+          {config.prompt}
+        </p>
       )}
 
-      <MediaContent media={config.media} />
+      {config.media && config.media.length > 0 && (
+        <MediaContent media={config.media} />
+      )}
 
       {input}
 

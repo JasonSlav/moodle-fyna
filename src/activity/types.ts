@@ -38,6 +38,7 @@ export type TrueFalseActivityConfig = BaseActivityConfig & {
   type: "true_false";
   statement: string;
   correctValue?: boolean;
+  labels?: { positive?: string; negative?: string };
   feedback?: FeedbackConfig;
 };
 
@@ -50,7 +51,7 @@ export type TextInputActivityConfig = BaseActivityConfig & {
 export type DragDropActivityConfig = BaseActivityConfig & {
   type: "drag_drop";
   targets: { id: string; label: string }[];
-  items: { id: string; label: string }[];
+  items: { id: string; label: string; image?: string }[];
   correctPlacements?: { itemId: string; targetId: string }[];
   feedback?: FeedbackConfig;
 };

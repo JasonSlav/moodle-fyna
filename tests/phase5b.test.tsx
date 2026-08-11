@@ -5,9 +5,11 @@ import { evaluateActivity, parseAnswer } from "@/activity/evaluate";
 import { ContentStepView } from "@/sections/ContentStepView";
 import { getSectionConfig, SECTION_CONFIGS } from "@/sections/configs";
 
-describe("template struktur pembelajaran Section 1-4", () => {
-  it("setiap bagian memiliki struktur lengkap", () => {
-    for (const section of SECTION_CONFIGS) {
+describe("template struktur pembelajaran Section 2-4", () => {
+  const TEMPLATE_SECTIONS = SECTION_CONFIGS.filter((section) => section.number >= 2);
+
+  it("setiap bagian template memiliki struktur lengkap", () => {
+    for (const section of TEMPLATE_SECTIONS) {
       const kinds = section.steps.map((step) => step.kind);
       expect(section.steps[0].kind).toBe("introduction");
       expect(section.steps[section.steps.length - 1].kind).toBe("completion");
@@ -16,8 +18,8 @@ describe("template struktur pembelajaran Section 1-4", () => {
     }
   });
 
-  it("halaman awal berisi judul dan deskripsi placeholder", () => {
-    for (const section of SECTION_CONFIGS) {
+  it("halaman awal template berisi judul dan deskripsi placeholder", () => {
+    for (const section of TEMPLATE_SECTIONS) {
       const intro = section.steps[0];
       if (intro.kind === "introduction") {
         expect(intro.title).toBe(section.title);
@@ -26,8 +28,8 @@ describe("template struktur pembelajaran Section 1-4", () => {
     }
   });
 
-  it("setiap bagian memiliki langkah tujuan, materi, dan aktivitas", () => {
-    for (const section of SECTION_CONFIGS) {
+  it("setiap bagian template memiliki langkah tujuan, materi, dan aktivitas", () => {
+    for (const section of TEMPLATE_SECTIONS) {
       const titles: string[] = [];
       for (const step of section.steps) {
         if (step.kind === "content") titles.push(step.title);
@@ -89,9 +91,9 @@ describe("placeholder aktivitas", () => {
   });
 });
 
-describe("media array di langkah Materi", () => {
+describe("media array di langkah Materi (template)", () => {
   it("langkah Materi berisi slot gambar, grafik, video, dan embed", () => {
-    const section = getSectionConfig(1);
+    const section = getSectionConfig(2);
     const materi = section?.steps.find(
       (step) => step.kind === "content" && step.title === "Materi",
     );

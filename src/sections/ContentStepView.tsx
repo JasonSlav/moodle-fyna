@@ -16,7 +16,7 @@ export function ContentStepView({ title, text, media }: Props) {
       {text && (
         <p className="whitespace-pre-line text-sm text-zinc-600">{text}</p>
       )}
-      <MediaContent media={media} />
+      {media && media.length > 0 && <MediaContent media={media} />}
     </div>
   );
 }

@@ -12,7 +12,7 @@ export function MediaContent({ media }: { media?: MediaContentType[] }) {
   const items = media ?? [];
 
   if (items.length === 0) {
-    return <MediaPlaceholder label="Media belum tersedia" />;
+    return null;
   }
 
   return (

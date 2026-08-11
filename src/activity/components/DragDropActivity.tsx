@@ -9,12 +9,29 @@ type Props = {
   onChange: (answer: DragDropAnswer) => void;
 };
 
+type Item = DragDropActivityConfig["items"][number];
+
+function DragItem({ item }: { item: Item }) {
+  return (
+    <>
+      {item.image && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={item.image} alt={item.label} className="w-full rounded" />
+      )}
+      <span>{item.label}</span>
+    </>
+  );
+}
+
 export function DragDropActivity({ config, value, onChange }: Props) {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [itemOrder] = useState(() =>
+    [...config.items].sort(() => Math.random() - 0.5),
+  );
 
   const placements = value?.placements ?? [];
   const placedItemIds = placements.map((placement) => placement.itemId);
-  const unplacedItems = config.items.filter(
+  const unplacedItems = itemOrder.filter(
     (item) => !placedItemIds.includes(item.id),
   );
 
@@ -45,13 +62,13 @@ export function DragDropActivity({ config, value, onChange }: Props) {
             onClick={() =>
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
-            className={`cursor-pointer rounded-lg border px-3 py-2 ${
+            className={`flex w-44 cursor-pointer flex-col items-center gap-2 rounded-lg border p-3 text-center ${
               selectedItem === item.id
                 ? "border-zinc-900 bg-zinc-100"
                 : "border-zinc-300 bg-white"
             }`}
           >
-            {item.label}
+            <DragItem item={item} />
           </button>
         ))}
       </div>
@@ -70,7 +87,7 @@ export function DragDropActivity({ config, value, onChange }: Props) {
               className="rounded-lg border border-dashed border-zinc-400 p-4"
             >
               <p className="mb-2 font-medium">{target.label}</p>
-              <ul className="flex flex-col gap-1">
+              <ul className="flex flex-col gap-2">
                 {assigned.map((item) => (
                   <li key={item.id}>
                     <button
@@ -79,13 +96,13 @@ export function DragDropActivity({ config, value, onChange }: Props) {
                         e.stopPropagation();
                         setSelectedItem(item.id);
                       }}
-                      className={`w-full rounded-lg border bg-white px-3 py-2 text-left ${
+                      className={`flex w-full flex-col items-start gap-1 rounded-lg border bg-white p-3 text-left ${
                         selectedItem === item.id
                           ? "border-zinc-900 bg-zinc-100"
                           : "border-zinc-300"
                       }`}
                     >
-                      {item.label}
+                      <DragItem item={item} />
                     </button>
                   </li>
                 ))}

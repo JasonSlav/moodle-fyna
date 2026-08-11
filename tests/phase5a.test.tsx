@@ -9,12 +9,12 @@ import { getSectionConfig } from "@/sections/configs";
 import type { MediaContent as MediaContentType } from "@/sections/types";
 
 describe("MediaContent", () => {
-  it("menampilkan placeholder saat media tidak ada atau daftar kosong", () => {
+  it("tidak merender apa pun saat media tidak ada atau daftar kosong", () => {
     const htmlWithout = renderToStaticMarkup(<MediaContent />);
-    expect(htmlWithout).toContain("Media belum tersedia");
+    expect(htmlWithout).toBe("");
 
     const htmlEmpty = renderToStaticMarkup(<MediaContent media={[]} />);
-    expect(htmlEmpty).toContain("Media belum tersedia");
+    expect(htmlEmpty).toBe("");
   });
 
   it("menampilkan placeholder per tipe saat src kosong", () => {
