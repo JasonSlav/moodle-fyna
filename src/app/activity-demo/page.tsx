@@ -43,7 +43,7 @@ export default function ActivityDemoPage() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 p-6">
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-zinc-50 p-6">
       <h1 className="text-xl font-semibold text-zinc-900">
         Demo Activity Engine
       </h1>
