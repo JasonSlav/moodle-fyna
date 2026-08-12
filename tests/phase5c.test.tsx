@@ -53,9 +53,22 @@ describe("alur konten Bagian 1 (section config)", () => {
     expect(media).toHaveLength(4);
     for (const item of media) {
       expect(item.type).toBe("image");
-      expect(item.src).toMatch(/^\/media\/section1\//);
+      expect(item.src).toMatch(/^\/media\/section1\/.*\.webp$/);
       expect(item.source).toBeTruthy();
     }
+  });
+
+  it("langkah Membandingkan menyediakan gambar perbandingan atmosfer", () => {
+    if (!section) return;
+    const banding = section.steps.find(
+      (step) =>
+        step.kind === "content" && step.title === "Membandingkan Dua Kondisi Atmosfer",
+    );
+    expect(banding?.kind).toBe("content");
+    if (banding?.kind !== "content") return;
+    const media = banding.media?.[0];
+    expect(media?.type).toBe("image");
+    expect(media?.src).toBe("/media/section1/perbandingan-atmosfer.webp");
   });
 
   it("langkah Fakta 3 menyediakan embed video YouTube", () => {
@@ -87,6 +100,9 @@ describe("config aktivitas Bagian 1", () => {
     expect(config.items).toHaveLength(4);
     expect(config.targets).toHaveLength(4);
     expect(config.correctPlacements).toHaveLength(4);
+    for (const item of config.items) {
+      expect(item.image).toMatch(/\.webp$/);
+    }
   });
 
   it("s1-fakta3-pilih dan s1-banding-* adalah choice dengan kunci", () => {

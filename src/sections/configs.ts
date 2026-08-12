@@ -31,25 +31,25 @@ const SECTION_1_STEPS: SectionStep[] = [
     media: [
       {
         type: "image",
-        src: "/media/section1/grafik-suhu.png",
+        src: "/media/section1/grafik-suhu.webp",
         caption: "Perubahan Suhu Rata-Rata Permukaan Bumi Tahun 1880–2025",
         source: "NASA Goddard Institute for Space Studies (GISS), 2026",
       },
       {
         type: "image",
-        src: "/media/section1/gelombang-panas.png",
+        src: "/media/section1/gelombang-panas.webp",
         caption: "Gambar gelombang panas",
         source: "bmkg.go.id",
       },
       {
         type: "image",
-        src: "/media/section1/kekeringan.png",
+        src: "/media/section1/kekeringan.webp",
         caption: "Gambar kekeringan",
         source: "cnnindonesia.com",
       },
       {
         type: "image",
-        src: "/media/section1/es-mencair.png",
+        src: "/media/section1/es-mencair.webp",
         caption: "Gambar es mencair",
         source: "harian.disway.id",
       },
@@ -74,8 +74,13 @@ const SECTION_1_STEPS: SectionStep[] = [
   {
     kind: "content",
     title: "Membandingkan Dua Kondisi Atmosfer",
-    text:
-      "Kondisi A — Gas rumah kaca lebih sedikit\nKondisi B — Gas rumah kaca lebih banyak\n\nPerhatikan kedua kondisi tersebut, lalu jawab pertanyaan berikut.",
+    text: "Perhatikan gambar perbandingan di bawah ini.",
+    media: [
+      {
+        type: "image",
+        src: "/media/section1/perbandingan-atmosfer.webp",
+      },
+    ],
   },
   { kind: "activity", activityKey: "s1-banding-kondisi" },
   { kind: "activity", activityKey: "s1-banding-alasan" },

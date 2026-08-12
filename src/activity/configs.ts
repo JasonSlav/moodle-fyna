@@ -137,22 +137,22 @@ export const SECTION_1_ACTIVITY_CONFIGS: ActivityConfig[] = [
       {
         id: "p1",
         label: "Energi Matahari menuju Bumi",
-        image: "/media/section1/kartu-1.png",
+        image: "/media/section1/kartu-1.webp",
       },
       {
         id: "p2",
         label: "Sebagian energi diserap permukaan Bumi",
-        image: "/media/section1/kartu-2.png",
+        image: "/media/section1/kartu-2.webp",
       },
       {
         id: "p3",
         label: "Permukaan Bumi menjadi hangat",
-        image: "/media/section1/kartu-3.png",
+        image: "/media/section1/kartu-3.webp",
       },
       {
         id: "p4",
         label: "Bumi memancarkan kembali energi panas sebagai radiasi inframerah",
-        image: "/media/section1/kartu-4.png",
+        image: "/media/section1/kartu-4.webp",
       },
     ],
     correctPlacements: [
