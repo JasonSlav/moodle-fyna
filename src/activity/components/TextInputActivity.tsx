@@ -15,7 +15,7 @@ export function TextInputActivity({ value, onChange }: Props) {
       onChange={(e) => onChange({ text: e.target.value })}
       placeholder="Tulis jawabanmu di sini…"
       rows={4}
-      className="w-full rounded-lg border border-zinc-300 p-3 outline-none focus:border-zinc-500"
+      className="w-full rounded-2xl border-2 border-sky-2 p-3 text-navy outline-none focus:border-gold"
     />
   );
 }

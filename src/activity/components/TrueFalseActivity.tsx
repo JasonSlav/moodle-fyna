@@ -14,10 +14,10 @@ export function TrueFalseActivity({ config, value, onChange }: Props) {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="rounded-lg border border-zinc-200 bg-zinc-50 p-3">
+      <p className="rounded-2xl border border-sky-2 bg-sky-2 p-3 text-navy">
         {config.statement}
       </p>
-      <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-zinc-300 p-3">
+      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-sky-2 p-3 text-navy transition hover:border-gold">
         <input
           type="radio"
           name={config.key}
@@ -26,7 +26,7 @@ export function TrueFalseActivity({ config, value, onChange }: Props) {
         />
         <span>{positive}</span>
       </label>
-      <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-zinc-300 p-3">
+      <label className="flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-sky-2 p-3 text-navy transition hover:border-gold">
         <input
           type="radio"
           name={config.key}

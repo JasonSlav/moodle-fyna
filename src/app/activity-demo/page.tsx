@@ -22,18 +22,18 @@ export default function ActivityDemoPage() {
 
   if (hasIdentity === null) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="text-zinc-500">Memuat…</p>
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="text-navy/60">Memuat…</p>
       </main>
     );
   }
 
   if (!hasIdentity) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="max-w-md text-zinc-600">
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="max-w-md text-navy/70">
           Kamu perlu mengisi nama terlebih dahulu.{" "}
-          <Link href="/" className="font-medium text-zinc-900 underline">
+          <Link href="/" className="font-semibold text-navy underline">
             Buka halaman utama
           </Link>{" "}
           untuk memulai.
@@ -43,11 +43,11 @@ export default function ActivityDemoPage() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-zinc-50 p-6">
-      <h1 className="text-xl font-semibold text-zinc-900">
-        Demo Activity Engine
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-sky p-6">
+      <h1 className="text-2xl font-extrabold text-navy">
+        Demo <span className="text-gold">Activity Engine</span>
       </h1>
-      <p className="text-sm text-zinc-600">
+      <p className="text-sm text-navy/70">
         Halaman demo internal untuk menguji semua tipe aktivitas. Konten di sini
         bukan materi pembelajaran asli.
       </p>

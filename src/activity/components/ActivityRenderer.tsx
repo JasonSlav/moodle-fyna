@@ -77,10 +77,10 @@ export function ActivityRenderer({ config, initialAnswer, onSaved }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-white p-6">
-      <h2 className="text-lg font-semibold text-zinc-900">{config.title}</h2>
+    <div className="flex flex-col gap-4 rounded-3xl border border-sky-2 bg-white p-6">
+      <h2 className="text-lg font-extrabold text-navy">{config.title}</h2>
       {config.prompt && (
-        <p className="whitespace-pre-line text-sm text-zinc-600">
+        <p className="whitespace-pre-line text-sm text-navy/70">
           {config.prompt}
         </p>
       )}
@@ -96,23 +96,23 @@ export function ActivityRenderer({ config, initialAnswer, onSaved }: Props) {
           type="button"
           onClick={engine.checkAndSave}
           disabled={!engine.canCheck || engine.saveState === "saving"}
-          className="self-start rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="self-start rounded-full bg-navy px-6 py-2.5 text-sm font-bold text-white hover:bg-navy-2 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Periksa Jawaban
         </button>
 
         {engine.error && (
-          <p className="text-sm text-red-600">{engine.error}</p>
+          <p className="text-sm font-medium text-red-600">{engine.error}</p>
         )}
 
         {engine.result && (
           <p
             className={
               engine.result.checkable && engine.result.correct
-                ? "text-sm font-medium text-emerald-700"
+                ? "text-sm font-semibold text-forest"
                 : engine.result.checkable
-                  ? "text-sm font-medium text-amber-700"
-                  : "text-sm text-zinc-600"
+                  ? "text-sm font-semibold text-amber-600"
+                  : "text-sm text-navy/70"
             }
           >
             {engine.result.feedback}
@@ -120,16 +120,16 @@ export function ActivityRenderer({ config, initialAnswer, onSaved }: Props) {
         )}
 
         {engine.saveState === "saving" && (
-          <p className="text-sm text-zinc-500">Menyimpan jawaban…</p>
+          <p className="text-sm text-navy/60">Menyimpan jawaban…</p>
         )}
         {engine.saveState === "saved" && (
-          <p className="text-sm text-emerald-600">Jawaban tersimpan.</p>
+          <p className="text-sm font-medium text-forest">Jawaban tersimpan.</p>
         )}
         {engine.saveState === "error" && (
-          <p className="text-sm text-red-600">Gagal menyimpan jawaban.</p>
+          <p className="text-sm font-medium text-red-600">Gagal menyimpan jawaban.</p>
         )}
         {engine.saveState === "no-identity" && (
-          <p className="text-sm text-amber-700">
+          <p className="text-sm font-medium text-amber-600">
             Identitas belum tersimpan. Buka halaman utama untuk mengisi nama.
           </p>
         )}

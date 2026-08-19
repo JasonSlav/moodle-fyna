@@ -26,8 +26,8 @@ export function MediaContent({ media }: { media?: MediaContentType[] }) {
 
 function MediaPlaceholder({ label }: { label: string }) {
   return (
-    <div className="flex aspect-video w-full items-center justify-center rounded-lg border border-dashed border-zinc-400 bg-zinc-50">
-      <p className="text-sm text-zinc-500">{label}</p>
+    <div className="flex aspect-video w-full items-center justify-center rounded-3xl border-2 border-dashed border-navy/25 bg-sky-2">
+      <p className="text-sm text-navy/50">{label}</p>
     </div>
   );
 }
@@ -37,12 +37,12 @@ function MediaItem({ media }: { media: MediaContentType }) {
     <figure className="flex flex-col gap-1">
       {renderMedia(media)}
       {media.caption && (
-        <figcaption className="text-sm text-zinc-600">
+        <figcaption className="text-sm text-navy/70">
           {media.caption}
         </figcaption>
       )}
       {media.source && (
-        <p className="text-xs text-zinc-400">Sumber: {media.source}</p>
+        <p className="text-xs text-navy/50">Sumber: {media.source}</p>
       )}
     </figure>
   );
@@ -55,13 +55,13 @@ function renderMedia(media: MediaContentType) {
 
   switch (media.type) {
     case "video":
-      return <video src={media.src} controls className="w-full rounded-lg" />;
+      return <video src={media.src} controls className="w-full rounded-3xl" />;
     case "embed":
       return (
         <iframe
           src={media.src}
           title={media.alt ?? "Embed"}
-          className="aspect-video w-full rounded-lg"
+          className="aspect-video w-full rounded-3xl"
           allowFullScreen
         />
       );
@@ -69,7 +69,7 @@ function renderMedia(media: MediaContentType) {
     default:
       return (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={media.src} alt={media.alt ?? ""} className="w-full rounded-lg" />
+        <img src={media.src} alt={media.alt ?? ""} className="w-full rounded-3xl" />
       );
   }
 }

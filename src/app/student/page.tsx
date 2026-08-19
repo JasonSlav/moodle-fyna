@@ -9,18 +9,18 @@ export default function StudentPage() {
 
   if (loading) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="text-zinc-500">Memuat…</p>
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="text-navy/60">Memuat…</p>
       </main>
     );
   }
 
   if (!student) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="max-w-md text-zinc-600">
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="max-w-md text-navy/70">
           Kamu perlu mengisi nama terlebih dahulu.{" "}
-          <Link href="/" className="font-medium text-zinc-900 underline">
+          <Link href="/" className="font-semibold text-navy underline">
             Buka halaman utama
           </Link>{" "}
           untuk memulai.
@@ -30,27 +30,41 @@ export default function StudentPage() {
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-zinc-50 p-6">
-      <h1 className="text-xl font-semibold text-zinc-900">
-        Pilih Bagian Pembelajaran
-      </h1>
-      <Link
-        href="/student/section/1"
-        className="rounded-lg bg-zinc-900 px-4 py-3 text-center text-sm font-medium text-white hover:bg-zinc-700"
-      >
-        Mulai dari Bagian 1
-      </Link>
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-sky p-6">
+      <div className="flex flex-col gap-4 rounded-3xl bg-navy p-8">
+        <span className="inline-flex w-fit items-center rounded-full bg-gold px-4 py-1 text-sm font-bold uppercase tracking-wide text-navy">
+          Pilih Bagian
+        </span>
+        <h1 className="text-3xl font-extrabold text-white">
+          Pilih <span className="text-gold">Bagian Pembelajaran</span>
+        </h1>
+        <p className="text-sm font-medium text-sky-2">
+          Mulai dari Bagian 1 dan lanjutkan ke bagian berikutnya.
+        </p>
+        <Link
+          href="/student/section/1"
+          className="w-fit rounded-full bg-gold px-8 py-3 text-sm font-bold text-navy shadow-lg transition hover:bg-gold-2"
+        >
+          Mulai dari Bagian 1
+        </Link>
+      </div>
+
       <div className="flex flex-col gap-4">
         {SECTION_CONFIGS.map((section) => (
           <Link
             key={section.number}
             href={`/student/section/${section.number}`}
-            className="rounded-xl border border-zinc-200 bg-white p-5 hover:border-zinc-400"
+            className="flex items-center gap-4 rounded-3xl border border-sky-2 bg-white p-5 shadow-sm transition hover:border-gold"
           >
-            <p className="text-sm font-medium text-zinc-500">
-              Bagian {section.number}
-            </p>
-            <p className="mt-1 font-semibold text-zinc-900">{section.title}</p>
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-base font-bold text-white">
+              {section.number}
+            </span>
+            <span className="flex flex-col gap-1">
+              <span className="text-sm font-bold uppercase tracking-wide text-gold">
+                Bagian {section.number}
+              </span>
+              <span className="font-semibold text-navy">{section.title}</span>
+            </span>
           </Link>
         ))}
       </div>

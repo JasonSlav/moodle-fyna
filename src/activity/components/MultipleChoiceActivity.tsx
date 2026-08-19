@@ -23,7 +23,7 @@ export function MultipleChoiceActivity({ config, value, onChange }: Props) {
       {config.options.map((option) => (
         <label
           key={option.id}
-          className="flex cursor-pointer items-center gap-3 rounded-lg border border-zinc-300 p-3"
+          className="flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-sky-2 p-3 text-navy transition hover:border-gold"
         >
           <input
             type="checkbox"

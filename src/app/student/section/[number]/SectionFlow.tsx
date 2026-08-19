@@ -7,6 +7,7 @@ import { getActivityConfig } from "@/activity/configs";
 import type { ActivityAnswer } from "@/activity/types";
 import { useStudent } from "@/hooks/use-student";
 import { clearLocalStudentId } from "@/lib/student-identity";
+import { SectionMinimap } from "@/components/SectionMinimap";
 import { ContentStepView } from "@/sections/ContentStepView";
 import { getSectionConfig } from "@/sections/configs";
 
@@ -74,18 +75,18 @@ export default function SectionFlow({
 
   if (loading) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="text-zinc-500">Memuat…</p>
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="text-navy/60">Memuat…</p>
       </main>
     );
   }
 
   if (identityLost || !student) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
-        <p className="max-w-md text-zinc-600">
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
+        <p className="max-w-md text-navy/70">
           Kamu perlu mengisi nama terlebih dahulu.{" "}
-          <Link href="/" className="font-medium text-zinc-900 underline">
+          <Link href="/" className="font-semibold text-navy underline">
             Buka halaman utama
           </Link>{" "}
           untuk memulai.
@@ -96,12 +97,12 @@ export default function SectionFlow({
 
   if (!section) {
     return (
-      <main className="flex flex-1 items-center justify-center p-6">
+      <main className="flex flex-1 items-center justify-center bg-sky p-6">
         <div className="max-w-md">
-          <h1 className="text-xl font-semibold text-zinc-900">
+          <h1 className="text-xl font-extrabold text-navy">
             Bagian tidak ditemukan
           </h1>
-          <Link href="/student" className="mt-2 inline-block text-sm font-medium text-zinc-900 underline">
+          <Link href="/student" className="mt-2 inline-block text-sm font-semibold text-navy underline">
             Kembali ke daftar bagian
           </Link>
         </div>
@@ -120,20 +121,20 @@ export default function SectionFlow({
   const nextSection = getSectionConfig(section.number + 1);
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-zinc-50 p-6">
-      <div className="flex flex-col gap-2">
-        <p className="text-sm font-medium text-zinc-500">
+    <main className="mx-auto flex w-full max-w-3xl flex-col gap-6 bg-sky p-6">
+      <div className="flex flex-col gap-3">
+        <span className="inline-flex w-fit items-center rounded-full bg-gold px-3 py-0.5 text-sm font-bold uppercase tracking-wide text-navy">
           Bagian {section.number}
-        </p>
-        <h1 className="text-xl font-semibold text-zinc-900">{section.title}</h1>
+        </span>
+        <h1 className="text-2xl font-extrabold text-navy">{section.title}</h1>
         {loaded && activitySteps.length > 0 && (
           <div className="flex flex-col gap-1">
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-navy/70">
               Progres: {completedCount} / {activitySteps.length} aktivitas
             </p>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-sky-2">
               <div
-                className="h-full rounded-full bg-zinc-900"
+                className="h-full rounded-full bg-navy"
                 style={{
                   width: `${(completedCount / activitySteps.length) * 100}%`,
                 }}
@@ -143,7 +144,9 @@ export default function SectionFlow({
         )}
       </div>
 
-      <div className="rounded-xl border border-zinc-200 bg-white p-6">
+      <SectionMinimap steps={section.steps} currentIndex={stepIndex} savedKeys={savedKeys} />
+
+      <div className="rounded-3xl border border-sky-2 bg-white p-6">
         {step.kind === "introduction" && (
           <ContentStepView
             title={step.title ?? `Bagian ${section.number}`}
@@ -175,13 +178,13 @@ export default function SectionFlow({
 
         {step.kind === "completion" && (
           <div className="flex flex-col gap-3">
-            <h2 className="text-lg font-semibold text-zinc-900">
+            <h2 className="text-xl font-extrabold text-navy">
               Bagian {section.number} selesai
             </h2>
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-navy/70">
               [Ringkasan pembelajaran akan ditambahkan di sini.]
             </p>
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-navy/70">
               Kamu telah menyelesaikan {completedCount} dari{" "}
               {activitySteps.length} aktivitas di bagian ini.
             </p>
@@ -189,14 +192,14 @@ export default function SectionFlow({
               {nextSection && (
                 <Link
                   href={`/student/section/${nextSection.number}`}
-                  className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+                  className="rounded-full bg-navy px-6 py-2.5 text-sm font-bold text-white hover:bg-navy-2"
                 >
                   Lanjut ke Bagian {nextSection.number}
                 </Link>
               )}
               <Link
                 href="/student"
-                className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-100"
+                className="rounded-full border-2 border-navy px-6 py-2.5 text-sm font-bold text-navy hover:bg-sky-2"
               >
                 Kembali ke daftar bagian
               </Link>
@@ -210,7 +213,7 @@ export default function SectionFlow({
           type="button"
           onClick={() => setStepIndex((i) => i - 1)}
           disabled={stepIndex === 0}
-          className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-900 hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full border-2 border-navy px-6 py-2.5 text-sm font-bold text-navy hover:bg-sky-2 disabled:cursor-not-allowed disabled:opacity-40"
         >
           Sebelumnya
         </button>
@@ -218,14 +221,14 @@ export default function SectionFlow({
           <button
             type="button"
             onClick={() => setStepIndex((i) => i + 1)}
-            className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+            className="rounded-full bg-navy px-6 py-2.5 text-sm font-bold text-white hover:bg-navy-2"
           >
             Berikutnya
           </button>
         ) : (
           <Link
             href="/student"
-            className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700"
+            className="rounded-full bg-navy px-6 py-2.5 text-sm font-bold text-white hover:bg-navy-2"
           >
             Selesai
           </Link>

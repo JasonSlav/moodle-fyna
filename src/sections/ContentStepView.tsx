@@ -12,9 +12,9 @@ type Props = {
 export function ContentStepView({ title, text, media }: Props) {
   return (
     <div className="flex flex-col gap-3">
-      {title && <h2 className="text-lg font-semibold text-zinc-900">{title}</h2>}
+      {title && <h2 className="text-lg font-extrabold text-navy">{title}</h2>}
       {text && (
-        <p className="whitespace-pre-line text-sm text-zinc-600">{text}</p>
+        <p className="whitespace-pre-line text-sm text-navy/70">{text}</p>
       )}
       {media && media.length > 0 && <MediaContent media={media} />}
     </div>

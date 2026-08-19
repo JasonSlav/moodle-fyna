@@ -62,10 +62,10 @@ export function DragDropActivity({ config, value, onChange }: Props) {
             onClick={() =>
               setSelectedItem(selectedItem === item.id ? null : item.id)
             }
-            className={`flex w-44 cursor-pointer flex-col items-center gap-2 rounded-lg border p-3 text-center ${
+            className={`flex w-44 cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 p-3 text-center text-navy ${
               selectedItem === item.id
-                ? "border-zinc-900 bg-zinc-100"
-                : "border-zinc-300 bg-white"
+                ? "border-gold bg-sky-2"
+                : "border-sky-2 bg-white"
             }`}
           >
             <DragItem item={item} />
@@ -84,9 +84,9 @@ export function DragDropActivity({ config, value, onChange }: Props) {
               onDragOver={(e) => e.preventDefault()}
               onDrop={() => handleTarget(target.id)}
               onClick={() => handleTarget(target.id)}
-              className="rounded-lg border border-dashed border-zinc-400 p-4"
+              className="rounded-2xl border-2 border-dashed border-navy/40 p-4"
             >
-              <p className="mb-2 font-medium">{target.label}</p>
+              <p className="mb-2 font-semibold text-navy">{target.label}</p>
               <ul className="flex flex-col gap-2">
                 {assigned.map((item) => (
                   <li key={item.id}>
@@ -96,10 +96,10 @@ export function DragDropActivity({ config, value, onChange }: Props) {
                         e.stopPropagation();
                         setSelectedItem(item.id);
                       }}
-                      className={`flex w-full flex-col items-start gap-1 rounded-lg border bg-white p-3 text-left ${
+                      className={`flex w-full flex-col items-start gap-1 rounded-2xl border-2 bg-white p-3 text-left text-navy ${
                         selectedItem === item.id
-                          ? "border-zinc-900 bg-zinc-100"
-                          : "border-zinc-300"
+                          ? "border-gold bg-sky-2"
+                          : "border-sky-2"
                       }`}
                     >
                       <DragItem item={item} />
@@ -112,7 +112,7 @@ export function DragDropActivity({ config, value, onChange }: Props) {
         })}
       </div>
 
-      <p className="text-sm text-zinc-500">
+      <p className="text-sm text-navy/60">
         Klik item lalu klik target untuk menempatkan, atau seret item ke target.
       </p>
     </div>
